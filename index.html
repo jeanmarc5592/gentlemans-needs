@@ -1,0 +1,217 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700&display=swap" rel="stylesheet">
+        
+        <title>Gentleman's Needs</title>
+    </head>
+    
+    
+    <body>
+        <div class="main-wrapper">
+            <header class="header">
+                <div class="header__left">
+                    <div class="header__home">
+                        <ion-icon class="icon" name="home"></ion-icon>
+                    </div> 
+                    <div class="header__name">
+                        <span>Gentleman's Needs</span>
+                    </div>
+                </div>
+                
+                <div class="header__center">
+                    <div class="header__search">
+                        <input type="text" class="header__search-input" placeholder="Search">
+                    </div>
+                    <div id="filter-button" class="header__filter">
+                        <span>Filter</span>
+                        <ion-icon id="filter-arrow" class="icon icon-filter" name="arrow-dropdown"></ion-icon>
+                    </div>
+                </div>
+                
+                <div class="header__right">
+                    <div class="header__user">
+                        <ion-icon class="icon" name="cart"></ion-icon>
+                        <ion-icon class="icon" name="person"></ion-icon>
+                        <ion-icon class="icon" name="menu"></ion-icon>
+                    </div>
+                </div>
+            </header>
+
+            <aside class="sidebar">
+                <div class="sidebar__logo-box">
+                    <svg class="sidebar__logo-icon">
+                        <use xlink:href="img/sprite.svg#gentleman"></use>
+                    </svg>
+                </div> 
+
+
+                <ul class="sidebar__navigation">
+                    <li class="sidebar__item active">
+                        <a href="#" class="sidebar__link">
+                            Watches
+                        </a>
+                        <ion-icon class ="icon icon--black" name="arrow-dropright"></ion-icon>
+                    </li>
+                    
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link">
+                            Shirts
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link">
+                            Jackets
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link">
+                            Shoes
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link">
+                            Pants
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link">
+                            Accessoires
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="sidebar__social">
+                    <ion-icon class="icon-social" name="logo-instagram"></ion-icon>
+                    <ion-icon class="icon-social" name="logo-twitter"></ion-icon>
+                    <ion-icon class="icon-social" name="logo-facebook"></ion-icon>
+                </div>
+            </aside>
+            
+            
+
+            <main class="main">
+                <section id="filter-dropdown" class="filter">
+                    <form  class="filter__form">
+                        <ul class="filter__list">
+                            <li class="filter__item">
+                                <label for="color" class="filter__label">Color</label>
+                                <select id="filter-color" name="color" id="color" class="filter__dropdown">
+                                    <option value="" class="filter__dropdown-option"></option>
+                                    <option value="silver" class="filter__dropdown-option">Silver</option>
+                                    <option value="gold" class="filter__dropdown-option">Gold</option>
+                                    <option value="rosegold" class="filter__dropdown-option">Rosegold</option>
+                                    <option value="black" class="filter__dropdown-option">Black</option>
+                                    <option value="brown" class="filter__dropdown-option">Brown</option>
+                                </select>
+                            </li>
+                            <li class="filter__item">
+                                <label for="brand" class="filter__label">Brand</label>
+                                <select id="filter-brand" name="brand" id="brand" class="filter__dropdown">
+                                    <option value="" class="filter__dropdown-option"></option>
+                                    <option value="Rolex" class="filter__dropdown-option">Rolex</option>
+                                    <option value="Audemars Piguet" class="filter__dropdown-option">Audemars Piguet</option>
+                                    <option value="Breitling" class="filter__dropdown-option">Breitling</option>
+                                    <option value="Hublot" class="filter__dropdown-option">Hublot</option>
+                                    <option value="IWC" class="filter__dropdown-option">IWC</option>
+                                    <option value="Maurice Lacroix" class="filter__dropdown-option">Maurice Lacroix</option>
+                                    <option value="Longines" class="filter__dropdown-option">Longines</option>
+                                </select>
+                            </li>
+                            <li class="filter__item">
+                                <label for="wristband" class="filter__label">Wristband</label>
+                                <select id="filter-wristband" name="wristband" id="wristband" class="filter__dropdown">
+                                    <option value="" class="filter__dropdown-option"></option>
+                                    <option value="stainless steel" class="filter__dropdown-option">Stainless Steel</option>
+                                    <option value="leather" class="filter__dropdown-option">Leather</option>
+                                    <option value="rubber" class="filter__dropdown-option">Rubber</option>
+                                    <option value="ceramics" class="filter__dropdown-option">Ceramics</option>
+                                </select>
+                                
+                            </li>
+                            <li class="filter__item">
+                                <label for="size" class="filter__label">Size</label>
+                                <input id="filter-size" name ="size" type="number" class="filter__number" default="40" step="1" min="40" max="50">
+                            </li>
+                            <li class="filter__item">
+                                <label for="price" class="filter__label">Price max.</label>
+                                <input id="filter-price" name ="price" type="number" class="filter__number" step="5000" min="0" max="250,000">
+                            </li>
+                            <button id="clear-btn" class="btn btn--clear">Clear</button>
+                            <button id="apply-btn" class="btn">Apply</button>
+                        </ul>
+                    </form>
+                </section>
+
+                <section class="main__content">
+                    <div class="main__grid">
+                        
+                        <!-- IN STOCK -->
+                        <!-- 
+                       <div class="main__card">
+                            <h3 class="heading__tertiary">
+                                <span class="heading__tertiary--bold">%brand%</span>
+                                <span class="heading__tertiary--thin">%model%</span>
+                            </h3>
+                            <div class="main__image-box">
+                                <img src="%image%" class="main__image">
+                                <div class="main__in-stock">
+                                    <div class="main__in-stock--circle">
+                                        &nbsp;
+                                    </div>
+                                    <p class="main__in-stock--text">In Stock</p>
+                                </div>
+                                <div class="main__price">
+                                    <span class="main__price--new">%new price%</span>
+                                    <span class="main__price--old">%old price%</span>
+                                </div>
+                            </div>
+                        </div> 
+                        -->
+
+
+                        <!-- OUT OF STOCK -->
+                        <!-- 
+                       <div class="main__card">
+                            <h3 class="heading__tertiary">
+                                <span class="heading__tertiary--bold">%brand%</span>
+                                <span class="heading__tertiary--thin">%model%</span>
+                            </h3>
+                            <div class="main__image-box">
+                                <img src="%image%" class="main__image">
+                                <div class="main__out-stock">
+                                    <div class="main__out-stock--circle">
+                                        &nbsp;
+                                    </div>
+                                    <p class="main__out-stock--text">Out of Stock</p>
+                                </div>
+                                <div class="main__price">
+                                    <span class="main__price--new">%new price%</span>
+                                    <span class="main__price--old">%old price%</span>
+                                </div>
+                            </div>
+                        </div> 
+                        -->
+                    
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        
+
+
+
+
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="app.js"></script>    
+    </body>
+</html>
