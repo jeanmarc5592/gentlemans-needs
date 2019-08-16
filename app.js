@@ -52,8 +52,8 @@ var allWatches = [
         size: 46,
         price_new: 14550,
         price_old: 15710,
-        availability: 'outBre',
-        image: 'img/Breitling_Chronograph_Unitime.jpeg'
+        availability: 'out',
+        image: 'img/Breitling_Transocean_Chronograph_Unitime.jpeg'
     },
     watchSix = {
         color: 'silver',
@@ -74,7 +74,7 @@ var allWatches = [
         size: 43,
         price_new: 4450,
         price_old: 5800,
-        availability: 'out',
+        availability: 'in',
         image: 'img/IWC_Pilot\'s_Watch_Chronograph.jpeg'
     },
     watchEight = {
@@ -109,6 +109,116 @@ var allWatches = [
         price_old: 3230,
         availability: 'in',
         image: 'img/Longines_Master_Retrograde.jpeg'
+    },
+    watchEleven = {
+        color: 'silver',
+        brand: 'IWC',
+        model: 'Aquatimer Chronograph',
+        wristband: 'stainless steel',
+        size: 44,
+        price_new: 4990,
+        price_old: 6100,
+        availability: 'out',
+        image: 'img/IWC_Aquatimer_Chronograph.jpeg'
+    },
+    watchTwelve = {
+        color: 'black',
+        brand: 'Patek Philippe',
+        model: 'Complications',
+        wristband: 'leather',
+        size: 40,
+        price_new: 43160,
+        price_old: 45000,
+        availability: 'in',
+        image: 'img/Patek_Philippe_Complications.jpeg'
+    },
+    watchThirteen = {
+        color: 'black',
+        brand: 'Chopard',
+        model: 'Mille Miglia Jacky Ickx',
+        wristband: 'leather',
+        size: 42,
+        price_new: 7320,
+        price_old: 9760,
+        availability: 'out',
+        image: 'img/Chopard_Mille_Miglia_Jacky_Ickx.jpeg'
+    },
+    watchFourteen = {
+        color: 'rosegold',
+        brand: 'Chopard',
+        model: 'Mille Miglia',
+        wristband: 'rubber',
+        size: 44,
+        price_new: 16120,
+        price_old: 21500,
+        availability: 'in',
+        image: 'img/Chopard_Mille_Miglia.jpeg'
+    },
+    watchFifteen = {
+        color: 'silver',
+        brand: 'Audemars Piguet',
+        model: 'Royal Oak Chronograph',
+        wristband: 'rubber',
+        size: 41,
+        price_new: 19990,
+        price_old: 24500,
+        availability: 'in',
+        image: 'img/Audemars_Piguet_Royal_Oak_Chronograph.jpeg'
+    },
+    watchSixteen = {
+        color: 'black',
+        brand: 'Tag Heuer',
+        model: 'Carrera Chronograph',
+        wristband: 'rubber',
+        size: 45,
+        price_new: 7950,
+        price_old: 10870,
+        availability: 'in',
+        image: 'img/Tag_Heuer_Carrera_Chronograph.jpeg'
+    },
+    watchSeventeen = {
+        color: 'black',
+        brand: 'Chopard',
+        model: 'Classig Racing G.P.M.H.',
+        wristband: 'leather',
+        size: 43,
+        price_new: 5990,
+        price_old: 8600,
+        availability: 'out',
+        image: 'img/Chopard_Classic_Racing_GPMH.jpeg'
+    },
+    watchEighteen = {
+        color: 'black',
+        brand: 'Tag Heuer',
+        model: 'Monaco Sixty Nine',
+        wristband: 'leather',
+        size: 40,
+        price_new: 2250,
+        price_old: 6500,
+        availability: 'in',
+        image: 'img/Tag_Heuer_Monaco_Sixty_Nine.jpeg'
+    },
+    watchNineteen = {
+        color: 'rosegold',
+        brand: 'Patek Philippe',
+        model: 'Nautilus Power Reserve',
+        wristband: 'leather',
+        size: 40,
+        price_new: 79850,
+        price_old: 87900,
+        availability: 'in',
+        image: 'img/Patek_Philippe_Nautilus_Power_Reserve.jpeg'
+    },
+    watchTwenty = {
+        color: 'black',
+        brand: 'IWC',
+        model: 'Aquatimer Automatic 2000',
+        wristband: 'rubber',
+        size: 46,
+        price_new: 4990,
+        price_old: 9450,
+        availability: 'out',
+        image: 'img/IWC_Aquatimer_Automatic_2000.jpeg'
     }
 ];
 
@@ -143,8 +253,8 @@ var init = (function() {
     color.defaultValue = '';
     brand.defaultValue = '';
     wristband.defaultValue = '';
-    size.defaultValue = '40';
-    price.defaultValue = '5000';
+    size.defaultValue = '0';
+    price.defaultValue = '0';
     console.log('app has started');
 })();
 
@@ -203,18 +313,19 @@ applyBtn.addEventListener('click', function(e) {
     var colorValue = color.value;
     var brandValue = brand.value;
     var wristbandValue = wristband.value;
-    // var sizeValue = size.value;
-    // var priceValue = price.value;
+    var sizeValue = parseInt(size.value);
+    var priceValue = parseInt(price.value);
 
     // Write an Array with the input values
-    var inputArray = [colorValue, brandValue, wristbandValue];
+    var inputArray = [colorValue, brandValue, wristbandValue, sizeValue, priceValue];
 
     // Remove all empty values from the inputArray
     var realValues = inputArray.filter(function(element) {
-        return element !== '';
+        return (element !== '' && element !== 0);
     });
 
-    // Convert the objects inside allWatches to arrays
+
+    // Convert the objects inside allWatches to arrays to compare them with the filter Array (realValues)
     allWatches.forEach(function(item) {
         allWatchesAsArray.push(Object.values(item));
     });
@@ -237,23 +348,45 @@ applyBtn.addEventListener('click', function(e) {
         return chosenWatches;
     };
 
-    // Store all in one variable
-    var finalResult = chooseFunction(realValues);
+    console.log(realValues, chooseFunction(realValues));
+
+    // Checks the filter digits (size, price) and pushes the found items into an array 
+    var chooseFunctionDigits = function(size, price) {
+        var chosenWatchesDigits = [];
+        if(size !== 0 && price !== 0) {
+            allWatchesAsArray.forEach(function(item) {
+                if(item[4] <= size && item[5] <= price) {
+                    chosenWatchesDigits.push(item);
+                }
+            });
+        }
+        return chosenWatchesDigits;
+    };
+    
+    
+    match(chooseFunction(realValues), chooseFunctionDigits(sizeValue, priceValue));
+    // Store all in one variable (concat the two output arrays)
+    var finalResult = chooseFunction(realValues).concat(chooseFunctionDigits(sizeValue, priceValue));
+
+    // console.log(finalResult);
 
     // Display all filtered items to the UI
     displayWatches(finalResult);
 
-    // Clear the finalResult after display in order to prevent duplicates in the UI when hitting APPLY again
+  
+
+    // Clear the finalResult after display to prevent duplicates in the UI when hitting APPLY again
     if(finalResult.length > 0) {
         finalResult.forEach(function(item) {
             finalResult.pop(item);
+            applyBtn.style.display = 'none';
         });
     };
         
    // Clear all input-fields after submitting
     form.reset()
 
-    applyBtn.style.display = 'none';
+    
 });
 
 

@@ -31,6 +31,7 @@
                         <span>Filter</span>
                         <ion-icon id="filter-arrow" class="icon icon-filter" name="arrow-dropdown"></ion-icon>
                     </div>
+              
                 </div>
                 
                 <div class="header__right">
@@ -124,6 +125,9 @@
                                     <option value="IWC" class="filter__dropdown-option">IWC</option>
                                     <option value="Maurice Lacroix" class="filter__dropdown-option">Maurice Lacroix</option>
                                     <option value="Longines" class="filter__dropdown-option">Longines</option>
+                                    <option value="Patek Philippe" class="filter__dropdown-option">Patek Philippe</option>
+                                    <option value="Chopard" class="filter__dropdown-option">Chopard</option>
+                                    <option value="Tag Heuer" class="filter__dropdown-option">Tag Heuer</option>
                                 </select>
                             </li>
                             <li class="filter__item">
@@ -139,11 +143,11 @@
                             </li>
                             <li class="filter__item">
                                 <label for="size" class="filter__label">Size</label>
-                                <input id="filter-size" name ="size" type="number" class="filter__number" default="40" step="1" min="40" max="50">
+                                <input id="filter-size" name ="size" type="number" class="filter__number" default="0" step="1" min="40" max="50">
                             </li>
                             <li class="filter__item">
                                 <label for="price" class="filter__label">Price max.</label>
-                                <input id="filter-price" name ="price" type="number" class="filter__number" step="5000" min="0" max="250,000">
+                                <input id="filter-price" name ="price" type="number" class="filter__number" default ="0" step="5000" min="0" max="250,000">
                             </li>
                             <button id="clear-btn" class="btn btn--clear">Clear</button>
                             <button id="apply-btn" class="btn">Apply</button>
