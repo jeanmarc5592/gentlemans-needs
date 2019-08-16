@@ -9,7 +9,7 @@ var allWatches = [
         price_new: 9240,
         price_old: 11000,
         availability: 'in',
-        image: '/img/Rolex_GMT_Master.jpeg'
+        image: 'img/Rolex_GMT_Master.jpeg'
     },
     watchTwo = {
         color: 'silver',
@@ -20,7 +20,7 @@ var allWatches = [
         price_new: 25490,
         price_old: 26700,
         availability: 'in',
-        image: '/img/Rolex_Chosmograph_Daytona.jpeg'
+        image: 'img/Rolex_Chosmograph_Daytona.jpeg'
     },
     watchThree = {
         color: 'black',
@@ -31,7 +31,7 @@ var allWatches = [
         price_new: 46200,
         price_old: 48650,
         availability: 'out',
-        image: '/img/Audemars_Piguet_Royal_Oak_Offshore_Chronograph.jpg'
+        image: 'img/Audemars_Piguet_Royal_Oak_Offshore_Chronograph.jpg'
     },
     watchFour = {
         color: 'brown',
@@ -42,7 +42,7 @@ var allWatches = [
         price_new: 1350,
         price_old: 1950,
         availability: 'in',
-        image: '/img/Maurice_Lacroix_Masterpiece.jpeg'
+        image: 'img/Maurice_Lacroix_Masterpiece.jpeg'
     },
     watchFive = {
         color: 'brown',
@@ -53,7 +53,7 @@ var allWatches = [
         price_new: 14550,
         price_old: 15710,
         availability: 'outBre',
-        image: '/img/Breitling_Chronograph_Unitime.jpeg'
+        image: 'img/Breitling_Chronograph_Unitime.jpeg'
     },
     watchSix = {
         color: 'silver',
@@ -64,7 +64,7 @@ var allWatches = [
         price_new: 7950,
         price_old: 10870,
         availability: 'in',
-        image: '/img/Breitling_Navitimer_B03.jpeg'
+        image: 'img/Breitling_Navitimer_B03.jpeg'
     },
     watchSeven = {
         color: 'black',
@@ -75,7 +75,7 @@ var allWatches = [
         price_new: 4450,
         price_old: 5800,
         availability: 'out',
-        image: '/img/IWC_Pilot\'s_Watch_Chronograph.jpeg'
+        image: 'img/IWC_Pilot\'s_Watch_Chronograph.jpeg'
     },
     watchEight = {
         color: 'black',
@@ -86,7 +86,7 @@ var allWatches = [
         price_new: 12950,
         price_old: 21700,
         availability: 'out',
-        image: '/img/Hublot_Spirit_of_Big_Bang.jpeg'
+        image: 'img/Hublot_Spirit_of_Big_Bang.jpeg'
     },
     watchNine = {
         color: 'black',
@@ -97,7 +97,7 @@ var allWatches = [
         price_new: 9170,
         price_old: 12400,
         availability: 'in',
-        image: '/img/Hublot_Classic_Fusion_Black_Magic.jpg'
+        image: 'img/Hublot_Classic_Fusion_Black_Magic.jpg'
     },
     watchTen = {
         color: 'brown',
@@ -108,7 +108,7 @@ var allWatches = [
         price_new: 2580,
         price_old: 3230,
         availability: 'in',
-        image: '/img/Longines_Master_Retrograde.jpeg'
+        image: 'img/Longines_Master_Retrograde.jpeg'
     }
 ];
 
