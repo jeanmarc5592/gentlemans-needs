@@ -158,7 +158,7 @@ var allWatches = [
         color: 'silver',
         brand: 'Audemars Piguet',
         model: 'Royal Oak Chronograph',
-        wristband: 'rubber',
+        wristband: 'stainless steel',
         size: 41,
         price_new: 19990,
         price_old: 24500,
@@ -238,12 +238,12 @@ var price = document.getElementById('filter-price');
 
 var applyBtn = document.getElementById('apply-btn');
 var clearBtn = document.getElementById('clear-btn');
+var productBtn = document.getElementById('product-btn');
 
 var grid = document.querySelector('.main__grid');
 
+
 // Array that stores the chosen watches
-
-
 var allWatchesAsArray = [];
 
 
@@ -290,7 +290,17 @@ var displayWatches = function(arr) {
 };
 
 
-
+// SHOW ALL PRODUCTS AT ONCE
+productBtn.addEventListener('click', function() {
+    // Convert the objects inside allWatches to arrays to compare them with the filter Array (realValues)
+    var watchesArray = [];
+    allWatches.forEach(function(item) {
+        watchesArray.push(Object.values(item));
+    });
+    console.log(watchesArray);
+    // Display them in the UI
+    displayWatches(watchesArray);
+});
 
 
 
@@ -332,7 +342,20 @@ applyBtn.addEventListener('click', function(e) {
 
     // Function that checks if there are elements who matches the filters
     var match = function(arr, arr2) {
-        return arr.every(i => arr2.includes(i));
+        var result = arr.every(function(element) {
+            if(element !== '') {
+                if(arr2.includes(element) && arr2[5] <= element) {
+                    return arr2;
+                };
+                if(arr2[5] <= element) {
+                    return arr2;
+                };
+            };
+            if(arr2.includes(element)) {
+                return arr2;
+            };
+        });
+        return result;
     };
 
     // Function that invokes "match" and pushes the watch into chosenWatches when there is a match
@@ -350,25 +373,9 @@ applyBtn.addEventListener('click', function(e) {
 
     console.log(realValues, chooseFunction(realValues));
 
-    // Checks the filter digits (size, price) and pushes the found items into an array 
-    var chooseFunctionDigits = function(size, price) {
-        var chosenWatchesDigits = [];
-        if(size !== 0 && price !== 0) {
-            allWatchesAsArray.forEach(function(item) {
-                if(item[4] <= size && item[5] <= price) {
-                    chosenWatchesDigits.push(item);
-                }
-            });
-        }
-        return chosenWatchesDigits;
-    };
     
-    
-    match(chooseFunction(realValues), chooseFunctionDigits(sizeValue, priceValue));
-    // Store all in one variable (concat the two output arrays)
-    var finalResult = chooseFunction(realValues).concat(chooseFunctionDigits(sizeValue, priceValue));
+    var finalResult = chooseFunction(realValues);
 
-    // console.log(finalResult);
 
     // Display all filtered items to the UI
     displayWatches(finalResult);
