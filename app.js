@@ -221,7 +221,228 @@ var allWatches = [
         price_old: 9450,
         availability: 'out',
         image: 'img/IWC_Aquatimer_Automatic_2000.jpeg'
+    },
+    watchTwentyOne = {
+        color: 'silver',
+        brand: 'Patek Philippe',
+        model: 'Nautilus Date Sweep Seconds',
+        wristband: 'stainless steel',
+        size: 40,
+        price_new: 65440,
+        price_old: 69500,
+        availability: 'in',
+        image: 'img/Patek_Philippe_Nautilus_Date_Sweep_Seconds.jpeg'
+    },
+    watchTwentyTwo = {
+        color: 'black',
+        brand: 'Hublot',
+        model: 'Classic Fusion',
+        wristband: 'rubber',
+        size: 45,
+        price_new: 9990,
+        price_old: 14800,
+        availability: 'out',
+        image: 'img/Hublot_Classic_Fusion.jpeg'
+    },
+    watchTwentyThree = {
+        color: 'silver',
+        brand: 'Rolex',
+        model: 'Sea-Dweller',
+        wristband: 'stainless steel',
+        size: 40,
+        price_new: 6990,
+        price_old: 7300,
+        availability: 'out',
+        image: 'img/Rolex_Sea_Dweller.jpeg'
+    },
+    watchTwentyFour = {
+        color: 'rosegold',
+        brand: 'Hublot',
+        model: 'Big Bang Unico',
+        wristband: 'stainless steel',
+        size: 45,
+        price_new: 36770,
+        price_old: 49700,
+        availability: 'in',
+        image: 'img/Hublot_Big_Bang_Unico.jpg'
+    },
+    watchTwentyFive = {
+        color: 'rosegold',
+        brand: 'Audemars Piguet',
+        model: 'Millenary 4101',
+        wristband: 'leather',
+        size: 47,
+        price_new: 40600,
+        price_old: 49000,
+        availability: 'out',
+        image: 'img/Audemars_Piguet_Millenary_4101.jpg'
+    },
+    watchTwentySix = {
+        color: 'rosegold',
+        brand: 'Audemars Piguet',
+        model: 'Royal Oak Selfwinding',
+        wristband: 'stainless steel',
+        size: 41,
+        price_new: 53900,
+        price_old: 57890,
+        availability: 'in',
+        image: 'img/Audemars_Piguet_Royal_Oak_Selfwinding.jpg'
+    },
+    watchTwentySeven = {
+        color: 'silver',
+        brand: 'Omega',
+        model: 'Speedmaster Pre-Moon',
+        wristband: 'stainless steel',
+        size: 42,
+        price_new: 8799,
+        price_old: 9900,
+        availability: 'in',
+        image: 'img/Omega_Speedmaster_Premoon.jpeg'
+    },
+    watchTwentyEight = {
+        color: 'brown',
+        brand: 'Omega',
+        model: 'De Ville Prestige Co-Axial',
+        wristband: 'leather',
+        size: 40,
+        price_new: 6490,
+        price_old: 8500,
+        availability: 'in',
+        image: 'img/Omega_De_Ville_Prestige_Coaxial.jpeg'
+    },
+    watchTwentyNine = {
+        color: 'brown',
+        brand: 'Tag Heuer',
+        model: 'Carrera Chronograph Day Date',
+        wristband: 'leather',
+        size: 43,
+        price_new: 2100,
+        price_old: 5400,
+        availability: 'out',
+        image: 'img/Tag_Heuer_Carrera_Chronograph_Day_Date.jpeg'
+    },
+    watchThirty = {
+        color: 'black',
+        brand: 'Maurice Lacroix',
+        model: 'Pontos S Regatta',
+        wristband: 'rubber',
+        size: 45,
+        price_new: 5450,
+        price_old: 6990,
+        availability: 'in',
+        image: 'img/Maurice_Lacroix_Pontos_S_Regatta.jpeg'
+    },
+    watchThirtyOne = {
+        color: 'black',
+        brand: 'Maurice Lacroix',
+        model: 'Aikon Skeleton',
+        wristband: 'leather',
+        size: 45,
+        price_new: 4100,
+        price_old: 5600,
+        availability: 'out',
+        image: 'img/Maurice_Lacroix_Aikon_Skeleton.jpeg'
+    },
+    watchThirtyTwo = {
+        color: 'black',
+        brand: 'IWC',
+        model: 'Ingenieur Double Chronograph Steel',
+        wristband: 'rubber',
+        size: 45,
+        price_new: 5990,
+        price_old: 6490,
+        availability: 'in',
+        image: 'img/IWC_Ingenieur_Double_Chronograph_Steel.jpeg'
+    },
+    watchThirtyThree = {
+        color: 'brown',
+        brand: 'IWC',
+        model: 'Portugieser Automatic',
+        wristband: 'leather',
+        size: 42,
+        price_new: 19040,
+        price_old: 23800,
+        availability: 'out',
+        image: 'img/IWC_Portugieser_Automatic.jpg'
+    },
+    watchThirtyFour = {
+        color: 'black',
+        brand: 'Breitling',
+        model: 'Chronomat Avenger Hurricane 45',
+        wristband: 'rubber',
+        size: 45,
+        price_new: 5200,
+        price_old: 8020,
+        availability: 'out',
+        image: 'img/Breitling_Chronomat_Avenger_Hurricane_45.jpeg'
+    },
+    watchThirtyFive = {
+        color: 'silver',
+        brand: 'Breitling',
+        model: 'Transocean Chronograph',
+        wristband: 'stainless steel',
+        size: 43,
+        price_new: 5870,
+        price_old: 7520,
+        availability: 'in',
+        image: 'img/Breitling_Transocean_Chronograph.jpeg'
+    },
+    watchThirtySix = {
+        color: 'silver',
+        brand: 'Breitling',
+        model: 'Bentley B04 GMT',
+        wristband: 'stainless steel',
+        size: 49,
+        price_new: 7650,
+        price_old: 7850,
+        availability: 'in',
+        image: 'img/Breitling_Bentley_B04_GMT.jpeg'
+    },
+    watchThirtySeven = {
+        color: 'brown',
+        brand: 'Longines',
+        model: 'Lindbergh Hour Angle',
+        wristband: 'leather',
+        size: 38,
+        price_new: 2740,
+        price_old: 3100,
+        availability: 'out',
+        image: 'img/Longines_Lindbergh_Hour_Angle.jpeg'
+    },
+    watchThirtyEight = {
+        color: 'silver',
+        brand: 'Longines',
+        model: 'Master Chronograph',
+        wristband: 'stainless steel',
+        size: 39,
+        price_new: 1850,
+        price_old: 2310,
+        availability: 'in',
+        image: 'img/Longines_Master_Chronograph.jpg'
+    },
+    watchThirtyNine = {
+        color: 'gold',
+        brand: 'Longines',
+        model: 'Flagship',
+        wristband: 'leather',
+        size: 38,
+        price_new: 2750,
+        price_old: 3150,
+        availability: 'in',
+        image: 'img/Longines_Flagship.jpeg'
+    },
+    watchFourty = {
+        color: 'black',
+        brand: 'Chopard',
+        model: 'Classic Racing Superfast Chrono',
+        wristband: 'rubber',
+        size: 45,
+        price_new: 8400,
+        price_old: 11200,
+        availability: 'out',
+        image: 'img/Chopard_Classic_Racing_Superfast_Chrono.jpg'
     }
+
 ];
 
 
