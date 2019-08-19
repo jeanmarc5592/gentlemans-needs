@@ -1,4 +1,6 @@
-// ARRAY WITH ALL WATCHES
+// ---------------------------------------------
+// ----- ALL WATCHES (MAIN DATA) ---------------
+// ---------------------------------------------
 var allWatches = [
     watchOne = {
         color: 'silver',
@@ -223,8 +225,9 @@ var allWatches = [
 ];
 
 
-
-// DOM SELECTORS
+// ---------------------------------------------
+// ----- DOM SELECTORS -------------------------
+// ---------------------------------------------
 var filter = document.getElementById('filter-button');
 var filterIcon = document.getElementById('filter-arrow');
 var filterDropdown = document.getElementById('filter-dropdown');
@@ -243,54 +246,115 @@ var productBtn = document.getElementById('product-btn');
 var grid = document.querySelector('.main__grid');
 
 
-// Array that stores the chosen watches
-var allWatchesAsArray = [];
+// ---------------------------------------------
+// ----- FUNCTIONS -----------------------------
+// ---------------------------------------------
 
+// -- 1 -- CONVERT ALL WATCHES INTO AN ARRAY
+var allWatchesAsArray = function() {
+    // Array that stores the chosen watches
+    var finalArray = [];
+    // Convert the objects inside allWatches to arrays to compare them with the filter Array (realValues)
+    allWatches.forEach(function(item) {
+        finalArray.push(Object.values(item));
+    });
+    return finalArray;
+}
 
+// -- 2 -- FUNCTION TO ADD THE INDIVIDUAL HTML CODE 
+var addHtml = function(htmlCode, watch) {
+    // Update HTML code and replace placeholders by each array's elemements 
+    var newHtml = htmlCode.replace('%brand%', watch[1]);
+    newHtml = newHtml.replace('%model%', watch[2]);
+    newHtml = newHtml.replace('%image%', watch[8]);
+    newHtml = newHtml.replace('%available%', watch[7]);
+    newHtml = newHtml.replace('%new price%', watch[5]);
+    newHtml = newHtml.replace('%old price%', watch[6]);
+    // Insert the updated HTML code to the grid container 
+    grid.insertAdjacentHTML('beforeend', newHtml);
+};
 
-// INIT FUNCTION (IIFE) 
+// -- 3 -- FUNCTION TO DISPLAY THE WATCHES (INPUT: ARRAY WITH ARRAYS)
+var displayWatches = function(arr) {
+    // Iterate through array
+    arr.forEach(function(item) {
+        // If the item is available
+        if(item[7] === 'in') {
+            // HTML code for IN STOCK
+            var htmlIn = '<div class="main__card"><h3 class="heading__tertiary"><span class="heading__tertiary--bold">%brand%</span><span class="heading__tertiary--thin">%model%</span></h3><div class="main__image-box"><img src="%image%" class="main__image"><div class="main__in-stock"><div class="main__in-stock--circle">&nbsp;</div><p class="main__in-stock--text">In Stock</p></div><div class="main__price"><span class="main__price--new">%new price%€</span><span class="main__price--old">%old price%€</span></div></div></div>'
+            addHtml(htmlIn, item);
+        } else if(item[7] === 'out') {
+            // HTML code for OUT OF STOCK
+            var htmlOut = '<div class="main__card"><h3 class="heading__tertiary"><span class="heading__tertiary--bold">%brand%</span><span class="heading__tertiary--thin">%model%</span></h3><div class="main__image-box"><img src="%image%" class="main__image"><div class="main__out-stock"><div class="main__out-stock--circle">&nbsp;</div><p class="main__out-stock--text">Out of Stock</p></div><div class="main__price"><span class="main__price--new">%new price%€</span><span class="main__price--old">%old price%€</span></div></div></div>'
+            addHtml(htmlOut, item);
+        };
+    });
+     // If no watches match with the filter 
+    if(arr.length === 0) {
+        var noWatch = document.createElement('h2');
+        noWatch.textContent = 'No watches found. Try again';
+        grid.appendChild(noWatch);
+    };
+};
+
+// -- 4 -- FUNCTION THAT CHECKS IF THERE ARE MATCHES WITH THE FILTERS
+var match = function(arr, arr2) {
+    // Check if every element from the filter array is in allWatchesAsArray (match)
+    var result = arr.every(function(element) {
+        if(element !== '') {
+            // CASE 1: A watch from allWatchesAsArray includes the filter value AND the price is smaller or equal to the price-filter
+            if(arr2.includes(element) && arr2[5] <= element) {
+                return arr2;
+            };
+            // CASE 2: Only the price-filter is applied 
+            if(arr2[5] <= element) {
+                return arr2;
+            };
+        };
+        // CASE 3: The watch from allWatchesAsArray includes a filter value (color, brand, wristband & size)
+        if(arr2.includes(element)) {
+            return arr2;
+        };
+    });
+    return result;
+};
+
+// -- 5 -- FUNCTION THAT INVOKES match() AND PUSHES THE RESULTS INTO chosenWatches
+var chooseFunction = function(filterArr) {
+    var chosenWatches = [];
+    if(filterArr.length > 0) {
+        allWatchesAsArray().forEach(function(item) {
+            if(match(filterArr, item)) {
+            chosenWatches.push(item); 
+            } 
+        });
+    
+    };
+    return chosenWatches;
+};
+
+// -- 6 -- INIT FUNCTION (IIFE) 
 var init = (function() {
+    // Set the default values for the filters
     color.defaultValue = '';
     brand.defaultValue = '';
     wristband.defaultValue = '';
     size.defaultValue = '0';
     price.defaultValue = '0';
     console.log('app has started');
+    // Get data from localStorage and display it to the UI if it has elements stored
+    if(localStorage.length > 0) {
+        var savedData = JSON.parse(localStorage.getItem('watches'));
+        displayWatches(savedData);
+    };
 })();
 
 
-// FUNCTION TO DISPLAY THE WATCHES (INPUT: ARRAY WITH ARRAYS)
-var displayWatches = function(arr) {
-        // Iterate through array
-        arr.forEach(function(item) {
-            // If the item is available
-            if(item[7] === 'in') {
-                // HTML code
-                var html = '<div class="main__card"><h3 class="heading__tertiary"><span class="heading__tertiary--bold">%brand%</span><span class="heading__tertiary--thin">%model%</span></h3><div class="main__image-box"><img src="%image%" class="main__image"><div class="main__in-stock"><div class="main__in-stock--circle">&nbsp;</div><p class="main__in-stock--text">In Stock</p></div><div class="main__price"><span class="main__price--new">%new price%€</span><span class="main__price--old">%old price%€</span></div></div></div>'
-                // Update HTML code and replace placeholders by each array's elemements 
-                var newHtml = html.replace('%brand%', item[1]);
-                newHtml = newHtml.replace('%model%', item[2]);
-                newHtml = newHtml.replace('%image%', item[8]);
-                newHtml = newHtml.replace('%available%', item[7]);
-                newHtml = newHtml.replace('%new price%', item[5]);
-                newHtml = newHtml.replace('%old price%', item[6]);
-                // Insert the updated HTML code to the grid container 
-                grid.insertAdjacentHTML('beforeend', newHtml);
-            } else if(item[7] === 'out') {
-                var html = '<div class="main__card"><h3 class="heading__tertiary"><span class="heading__tertiary--bold">%brand%</span><span class="heading__tertiary--thin">%model%</span></h3><div class="main__image-box"><img src="%image%" class="main__image"><div class="main__out-stock"><div class="main__out-stock--circle">&nbsp;</div><p class="main__out-stock--text">Out of Stock</p></div><div class="main__price"><span class="main__price--new">%new price%€</span><span class="main__price--old">%old price%€</span></div></div></div>'
-                var newHtml = html.replace('%brand%', item[1]);
-                newHtml = newHtml.replace('%model%', item[2]);
-                newHtml = newHtml.replace('%image%', item[8]);
-                newHtml = newHtml.replace('%available%', item[7]);
-                newHtml = newHtml.replace('%new price%', item[5]);
-                newHtml = newHtml.replace('%old price%', item[6]);
-                grid.insertAdjacentHTML('beforeend', newHtml);
-            }
-        });
-};
+// ---------------------------------------------
+// ----- EVENTLISTENERS ------------------------
+// ---------------------------------------------
 
-
-// SHOW ALL PRODUCTS AT ONCE
+// -- 1 -- SHOW ALL PRODUCTS AT ONCE
 productBtn.addEventListener('click', function() {
     // Convert the objects inside allWatches to arrays to compare them with the filter Array (realValues)
     var watchesArray = [];
@@ -302,10 +366,7 @@ productBtn.addEventListener('click', function() {
     displayWatches(watchesArray);
 });
 
-
-
-
-// SHOW AND HIDE THE FILTER DROPDOWN
+// -- 2 -- SHOW AND HIDE THE FILTER DROPDOWN
 filter.addEventListener('click', function() {
     // Show and hide it
     filterDropdown.classList.toggle('shown');
@@ -313,75 +374,29 @@ filter.addEventListener('click', function() {
     filterIcon.classList.toggle('rotate');
 });
 
-
-
-// APPLY FILTERS
+// -- 3 -- APPLY FILTERS
 applyBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    
     // Get all filter values
     var colorValue = color.value;
     var brandValue = brand.value;
     var wristbandValue = wristband.value;
     var sizeValue = parseInt(size.value);
     var priceValue = parseInt(price.value);
-
     // Write an Array with the input values
     var inputArray = [colorValue, brandValue, wristbandValue, sizeValue, priceValue];
-
     // Remove all empty values from the inputArray
     var realValues = inputArray.filter(function(element) {
         return (element !== '' && element !== 0);
     });
-
-
     // Convert the objects inside allWatches to arrays to compare them with the filter Array (realValues)
-    allWatches.forEach(function(item) {
-        allWatchesAsArray.push(Object.values(item));
-    });
-
-    // Function that checks if there are elements who matches the filters
-    var match = function(arr, arr2) {
-        var result = arr.every(function(element) {
-            if(element !== '') {
-                if(arr2.includes(element) && arr2[5] <= element) {
-                    return arr2;
-                };
-                if(arr2[5] <= element) {
-                    return arr2;
-                };
-            };
-            if(arr2.includes(element)) {
-                return arr2;
-            };
-        });
-        return result;
-    };
-
-    // Function that invokes "match" and pushes the watch into chosenWatches when there is a match
-    var chooseFunction = function(filterArr) {
-        var chosenWatches = [];
-        if(filterArr.length > 0) {
-            allWatchesAsArray.forEach(function(item) {
-                if(match(filterArr, item)) {
-                chosenWatches.push(item); 
-                }
-            });
-        };
-        return chosenWatches;
-    };
-
-    console.log(realValues, chooseFunction(realValues));
-
-    
+    allWatchesAsArray();
+    // Find items which match with the input array
     var finalResult = chooseFunction(realValues);
-
-
+    // Save the chosen watches in localStorage
+    localStorage.setItem('watches', JSON.stringify(finalResult));
     // Display all filtered items to the UI
     displayWatches(finalResult);
-
-  
-
     // Clear the finalResult after display to prevent duplicates in the UI when hitting APPLY again
     if(finalResult.length > 0) {
         finalResult.forEach(function(item) {
@@ -389,20 +404,20 @@ applyBtn.addEventListener('click', function(e) {
             applyBtn.style.display = 'none';
         });
     };
-        
-   // Clear all input-fields after submitting
+    // Clear all input-fields after submitting
     form.reset()
-
-    
 });
 
-
-
-
-// Remove all watches
+// -- 4 -- CLEAR THE UI 
 clearBtn.addEventListener('click', function() {
+    // Clear the localStorage
+    localStorage.removeItem('watches');
+    // Reload the page again to display the changes
     location.reload();
 });
+
+
+
 
 
 
