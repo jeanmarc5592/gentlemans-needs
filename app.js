@@ -510,6 +510,7 @@ var displayWatches = function(arr) {
             addHtml(htmlOut, item);
         };
     });
+
      // If no watches match with the filter 
     if(arr.length === 0) {
         var noWatch = document.createElement('h2');
@@ -566,25 +567,28 @@ var init = (function() {
     // Get data from localStorage and display it to the UI if it has elements stored
     if(localStorage.length > 0) {
         var savedData = JSON.parse(localStorage.getItem('watches'));
-        displayWatches(savedData);
+        var singleSavedData = [...new Set(savedData)];
+        displayWatches(singleSavedData);
     };
 })();
 
 
+
 // ---------------------------------------------
-// ----- EVENTLISTENERS ------------------------
+// ----- EVENT-LISTENERS -----------------------
 // ---------------------------------------------
 
 // -- 1 -- SHOW ALL PRODUCTS AT ONCE
 productBtn.addEventListener('click', function() {
-    // Convert the objects inside allWatches to arrays to compare them with the filter Array (realValues)
-    var watchesArray = [];
-    allWatches.forEach(function(item) {
-        watchesArray.push(Object.values(item));
-    });
-    console.log(watchesArray);
-    // Display them in the UI
-    displayWatches(watchesArray);
+    // grid has 9 child nodes as default value, insert all elements only if the UI is empty to prevend duplicates
+    if(grid.childNodes.length === 9) {
+        // Convert the objects inside allWatches to arrays to display them in the UI
+        var watchesArray = allWatchesAsArray();
+        // Display them in the UI
+        displayWatches(watchesArray); 
+        // Pass them into localStorage
+        localStorage.setItem('watches', JSON.stringify(watchesArray));
+    };
 });
 
 // -- 2 -- SHOW AND HIDE THE FILTER DROPDOWN
@@ -616,8 +620,6 @@ applyBtn.addEventListener('click', function(e) {
     var finalResult = chooseFunction(realValues);
     // Save the chosen watches in localStorage
     localStorage.setItem('watches', JSON.stringify(finalResult));
-    // Display all filtered items to the UI
-    displayWatches(finalResult);
     // Clear the finalResult after display to prevent duplicates in the UI when hitting APPLY again
     if(finalResult.length > 0) {
         finalResult.forEach(function(item) {
@@ -627,15 +629,23 @@ applyBtn.addEventListener('click', function(e) {
     };
     // Clear all input-fields after submitting
     form.reset()
+    // Reload the page to apply changes
+    location.reload();
 });
 
 // -- 4 -- CLEAR THE UI 
 clearBtn.addEventListener('click', function() {
     // Clear the localStorage
-    localStorage.removeItem('watches');
+    localStorage.clear();
     // Reload the page again to display the changes
     location.reload();
 });
+
+
+
+
+
+
 
 
 

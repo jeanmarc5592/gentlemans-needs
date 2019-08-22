@@ -135,11 +135,16 @@ html {
     list-style-type: none;
     padding: 1rem;
     padding-left: 3rem;
+    transition: background-color .3s;
     border: 0.05rem solid #000;
     border-right: none;
     display: flex;
     align-items: center;
     justify-content: flex-start; }
+    .sidebar__item:hover {
+      background-color: #49D85A; }
+    .sidebar__item:active {
+      background-color: #D2F830; }
   .sidebar__link {
     text-decoration: none;
     color: #000;
@@ -228,7 +233,7 @@ html {
     cursor: pointer; }
 
 .active {
-  background-color: #f0eeee; }
+  background-color: #49D85A; }
 
 .shown {
   display: block; }

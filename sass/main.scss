@@ -243,6 +243,7 @@ html {
         list-style-type: none;
         padding: 1rem;
         padding-left: 3rem;
+        transition: background-color .3s;
        
         border: .05rem solid $color-black;
         border-right: none;
@@ -250,12 +251,21 @@ html {
         display: flex;
         align-items: center;
         justify-content: flex-start;
+
+        &:hover {
+            background-color: $color-green-2;
+        }
+
+        &:active {
+            background-color: $color-green;
+        }
     }
 
     &__link {
         text-decoration: none;
         color: $color-black;
         font-size: 1.6rem;
+
     }
 
     &__social {
@@ -395,7 +405,7 @@ html {
 
 
 .active {
-    background-color: $color-grey;
+    background-color: $color-green-2;
 }
 
 .shown {
